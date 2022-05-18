@@ -1,72 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
-<!--<![endif]-->
+  <!--<![endif]-->
 
-<head>{% include head.html %}</head>
+  <head>
+    {% include head.html %}
+  </head>
 
-<body id="page">
+  <body id="page">
+    {% include navigation.html %} {% include special-effect.html %}
 
-{% include navigation.html %} {% include special-effect.html %}
+    <div id="main" role="main">
+      <article class="entry">
+        {% if page.image.feature %} <img src="{{ site.url }}{{ site.baseurl
+        }}/images/{{ page.image.feature }}" class="entry-feature-image" alt="{{
+        page.title }}" {% if site.logo==null %} style="margin-top:0;" {% endif
+        %} /> {% if page.image.credit %}
+        <p class="image-credit">
+          Photo Credit:
+          <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a>
+        </p>
+        {% endif %} {% endif %}
 
-  <div id="main" role="main">
-    <article class="entry">
-      {% if page.image.feature %}
-        <img src="{{ site.url }}{{ site.baseurl }}/images/{{ page.image.feature }}" class="entry-feature-image" alt="{{ page.title }}" 
-          {% if site.logo==null %} 
-            style="margin-top:0;" 
-          {% endif %} />
-        {% if page.image.credit %}
-          <p class="image-credit">Photo Credit: 
-            <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a>
-          </p>
-        {% endif %} 
-      {% endif %}
-      
-      <div class="container-fluid">
-
-        <div class="row">
-          <header class="col-sm-12 col-md-12 col-lg-12 entry-header">
-            <h1>
-              <center>
-                {% if page.headline %}
-                  {{ page.headline }}
-                {% else %}
-                  {{ page.title }}
-                {% endif %}
-              </center>
-            </h1>
-          </header>
-        </div>
-
-        <div class="row">
-
-          <div class="col-sm-12 col-md-3 col-lg-3">
-            {% include sidebar.html %}
+        <div class="container-fluid">
+          <div class="row">
+            <header class="col-sm-12 col-md-12 col-lg-12 entry-header">
+              <h1>
+                <center>
+                  {% if page.headline %} {{ page.headline }} {% else %} {{
+                  page.title }} {% endif %}
+                </center>
+              </h1>
+            </header>
           </div>
 
-          <div class="col-sm-12 col-md-8 col-lg-8">
-            <div class="post-content-justify">
-              {{ content }}
+          <div class="row">
+            <div class="col-sm-12-col-md-3-col-lg-3">
+              {% include sidebar.html %}
             </div>
-          </div><!-- /.entry-content -->
-          <div class="col-md-1 col-lg-1"></div>
-        </div><!-- /row -->
 
-      </div>
-    </article>
-  </div>
-  <!-- /#main -->
+            <div class="col-sm-12 col-md-8 col-lg-8">
+              <div class="post-content-justify">{{ content }}</div>
+            </div>
+            <!-- /.entry-content -->
+            <div class="col-md-1 col-lg-1"></div>
+          </div>
+          <!-- /row -->
+        </div>
+      </article>
+    </div>
+    <!-- /#main -->
 
-
-  <div class="footer-color">
-    <footer role="contentinfo">
-      <center>{% include footer.html %}</center>
-    </footer>
-  </div><!-- /.footer-wrapper -->{% include scripts.html %}
-
-</body>
+    <div class="footer-color">
+      <footer role="contentinfo">
+        <center>{% include footer.html %}</center>
+      </footer>
+    </div>
+    <!-- /.footer-wrapper -->{% include scripts.html %}
+  </body>
 </html>

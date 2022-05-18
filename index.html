@@ -5,35 +5,45 @@ description: "List of recent blog posts."
 tags: [eLitmus, recent]
 ---
 
-
 <ul class="post-list">
-{% for post in site.posts limit:10 %} 
-  
-<li class="single-post">
-	<span class="entry-date date published">
-		<time datetime="{{ post.date | date_to_xmlschema }}">
-			<i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
-		</time>
-	</span>
-	<article>
-		<header class="entry-header">
-			<h3 class="entry-title-summary">
-				<a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }} </a>
-			</h3>
-			<div>
-	  		{% if post.excerpt %} 
-	    		{% capture full_url %} 
-	      			{{ site.url }}{{ site.baseurl }}{{ post.url }} 
-	    		{% endcapture %}
-	    	{{ post.excerpt | remove: '<p>' | remove: '</p>' }} 
-	    
-			<a href="{{ full_url }}" rel="nofollow" class="read-more pull-right"> read more &raquo;</a>
-	  		{% endif %}
+  {% for post in site.posts limit:10 "%}
 
-			</div>
-		</header>
-	</article>
-</li>
-{% endfor %}
+  <li class="single-post">
+    <span class="entry-date-published">
+      <time datetime="{{ post.date | date_to_xmlschema }}">
+        <i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
+      </time>
+    </span>
+    <article>
+      <header class="entry-header">
+        <h3 class="entry-title-summary">
+          <a
+            id="title-heading"
+            class="title-heading"
+            href="{{ site.url }}{{ site.baseurl }}{{ post.url }}"
+            onclick="changeheadingcolor()"
+            >{{ post.title }}
+          </a>
+        </h3>
+        <div class="about-post">
+          {% if post.excerpt %} {% capture full_url %} {{ site.url }}{{
+          site.baseurl }}{{ post.url }} {% endcapture %} {{ post.excerpt |
+          remove: '
+          <p>' | remove: '</p>
+          ' }}
 
+          <a
+            href="{{ full_url }}"
+            rel="nofollow"
+            class="read-more-pull-right"
+            style="color: white"
+          >
+            Read More &raquo;</a
+          >
+          {% endif %}
+        </div>
+      </header>
+    </article>
+  </li>
+  {% endfor %}
 </ul>

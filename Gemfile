@@ -8,7 +8,7 @@ source 'https://rubygems.org'
 require 'open-uri'
 # versions = JSON.parse(open('https://pages.github.com/versions.json').read)
 versions = {}
-versions['github-pages'] = '183'
+versions['github-pages'] = '226'
 
 gem 'github-pages', versions['github-pages']
 # This are auto included by github-pages gem. No need to mention them
@@ -17,14 +17,15 @@ gem 'github-pages', versions['github-pages']
 
 # ---- Other gems
 gem 'sanitize' # SanitizationFilter
-
+gem 'wdm'
 gem 'stringex'
 gem 'htmlentities'
 gem 'coderay'
-
+gem 'tzinfo-data'
 gem 'rake'
 gem 'thor'
 gem 'activesupport'
 gem 'pygments.rb'
 # gem 'nokogiri'
 # gem 'iconv'
+gem "webrick"

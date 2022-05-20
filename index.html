@@ -5,10 +5,12 @@ description: "List of recent blog posts."
 tags: [eLitmus, recent]
 ---
 
-<ul class="post-list">
-  {% for post in site.posts limit:10 "%}
+  {% for post in site.posts limit:10 %}
 
-  <li class="single-post">
+  <li class="single-post w-50">
+    <div class="container-fluid h-25 p-2 w-100 border-2">
+      <img src="images/akash.jpg" ></img>
+    </div>
     <span class="entry-date-published">
       <time datetime="{{ post.date | date_to_xmlschema }}">
         <i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
@@ -45,5 +47,6 @@ tags: [eLitmus, recent]
       </header>
     </article>
   </li>
+
   {% endfor %}
-</ul>
+</div>

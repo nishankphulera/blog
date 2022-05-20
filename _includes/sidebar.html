@@ -1,9 +1,11 @@
-{% capture category_count %} {{ site.categories | size }}* {% endcapture %} {%
+<!-- {% capture category_count %} {{ site.categories | size }}* {% endcapture %} {%
 assign count = category_count | plus: 0 %} {% if count > 1 %}
 
-<div class="fixed-sidebar-mx-auto">
+<div
+  class="fixed-sidebar w-100 border border-dark position-absolute h-100 mr-3 pt-5 align-middle border border-2"
+>
   <ul class="sidebar-category-list-group-ml-auto">
-    <li class="categories-heading-list-group-item">
+    <li class="categories-heading list-group-item">
       <span class="fa-fa-th-list"></span> Categories:
     </li>
     {% for category in site.categories %}
@@ -20,4 +22,214 @@ assign count = category_count | plus: 0 %} {% if count > 1 %}
   </ul>
 </div>
 
-{% endif %}
+{% endif %} -->
+<!-- <header class="headroom"> -->
+<style>
+  .wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  #sidebar {
+    margin-bottom: -4500px;
+    padding-bottom: 5000px;
+    position: fixed;
+    min-width: 220px;
+    max-width: 220px;
+    background: #ffffff;
+    transition: all 0.3s;
+    box-shadow: 1px 1px 3px rgba(55, 52, 52, 0.3);
+  }
+  .list-unstyled-components {
+    justify-content: flex-start;
+  }
+
+  #sidebar.active {
+    margin-left: -250px;
+  }
+
+  #sidebar ul.components {
+    padding: 20px;
+    margin-top: 57%;
+  }
+
+  #sidebar ul p {
+    color: #fff;
+    padding: 10px;
+  }
+
+  #sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+  }
+
+  #sidebar ul li a:hover {
+    background: #fff;
+  }
+
+  #sidebar ul li.active > a,
+  a[aria-expanded="true"] {
+    margin: 16px;
+  }
+
+  a[data-toggle="collapse"] {
+    position: relative;
+  }
+
+  .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    transform: translateY(-50%);
+  }
+
+  ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    /* background: #6d7fcc; */
+  }
+
+  ul.CTAs {
+    padding: 20px;
+  }
+
+  #content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  .container {
+    display: flex;
+    width: 1040px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: #cccccc;
+    border-radius: 50px;
+    font-size: 12px;
+    margin: 0;
+    color: #fff;
+    padding: 2px 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .card-body p {
+    font-size: 13px;
+    margin: 0 0 40px;
+  }
+
+  .user {
+    display: flex;
+    margin-top: auto;
+  }
+</style>
+
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-dark"
+  style="
+    top: 0px;
+    position: absolute;
+    z-index: 3;
+    height: 7%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  "
+>
+  <a class="navbar-brand" href="{{ site.baseurl }}/">
+    <img
+      src="https://cdn0.elitmus.net/assets/elitmus-only-logo-6efc8a74032179afdb89829a093e05bd05d627dd4354bbd1ff7f4eb5db8a0af8.svg"
+      class="img-logo"
+    />
+    <span>
+      <div class="blog-label">Blog</div>
+    </span>
+  </a>
+
+  <div style="top: 0px" id="navbarSupportedContent">
+    <form class="form-inline my-lg-0">
+      <li class="nav-item">
+        {% capture category_count %} {{ site.categories | size }}* {% endcapture
+        %} {% assign count = category_count | plus: 0 %}
+
+        <input
+          data-toggle="dropdown"
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          aria-haspopup="true"
+          aria-expanded="false"
+        />
+
+        <button class="btn my-2 my-sm-0" type="submit">Search</button>
+      </li>
+    </form>
+  </div>
+</nav>
+
+<div class="wrapper">
+  <div class="menuToggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav style="z-index: 2" id="sidebar">
+    <ul class="list-unstyled-components">
+      {% for link in site.links %}
+      <!-- <p style="color: black">{{link.title}}</p> -->
+      <li class="active">
+        {% if link.title !="Home" %} {% if link.external %}
+        <a href="{{ link.url }}" aria-expanded="false">
+          <i class="{{link.icon}}"></i> {{ link.title }}
+        </a>
+        {% else %}
+        <a href="{{ site.url }}{{ site.baseurl }}{{ link.url }}">
+          <i class="{{link.icon}}"></i> {{ link.title }}
+        </a>
+        {% endif %} {% endif %}
+      </li>
+      {% endfor %}
+      <li class="active">
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+          <i class="fa fa-list-alt" aria-hidden="true"></i> Categories:</a
+        >
+        <!-- /Categories started here  -->
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+          {% for category in site.categories %}
+
+          <li>
+            <a
+              style="color: black"
+              name="{{ category | first | capitalize }}"
+              href="{{ site.url }}{{ site.baseurl }}/categories/{{ category | first }}/"
+            >
+              {{ category | first | capitalize }}
+            </a>
+          </li>
+
+          {% endfor %}
+        </ul>
+      </li>
+      <li class="active">
+        <a
+          style="color: black"
+          href="{{ site.url }}{{ site.baseurl }}/feed.xml"
+          class="nav-link"
+          title="Atom/RSS feed"
+        >
+          <i class="fa fa-rss"></i> Feed
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

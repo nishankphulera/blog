@@ -2,17 +2,55 @@
 layout: page
 ---
 
+<head>
+  {% include head.html %}
+</head>
+<div style="margin-top: -30px">{% include sidebar.html %}</div>
 
-<ul class="post-list">
-	{% for post in page.category_list %} 
-	  <li>
+<div
+  style="
+    margin-left: 45%;
+    background-color: white;
+    border-radius: 20px;
+    width: 700px;
+    margin-top: 30px;
+  "
+  class="h-50"
+>
+  <ul class="post-list">
+    {% for post in page.category_list %}
+    <li>
       <article>
-        <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }} 
-          <span class="date-show">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-          </span>
-        </a>
+        <div class="row">
+          <div class="col-sm-2 p-3 m-3">
+            <img
+              src="{{ site.url }}{{ site.baseurl }}/images/{{post.title}}.png"
+            />
+          </div>
+          <div class="col-sm-9">
+            <a
+              class="row"
+              href="{{ site.url }}{{ site.baseurl }}{{ post.url }}"
+            >
+              {{ post.title }}
+            </a>
+            <div class="row small">
+              {% for tag in post.tags %}
+              <p class="badge-warning px-1 rounded tag-display mr-1">
+                {{ tag }}
+              </p>
+              {% endfor %}
+            </div>
+            <div class="row date-show text-left">
+              <time datetime="{{ post.date | date_to_xmlschema }}"
+                >{{ post.date | date: "%B %d, %Y" }}</time
+              >
+            </div>
+          </div>
+        </div>
       </article>
     </li>
-	{% endfor %}
-</ul>
+    <div style="background-color: #2d2727; height: 2px; width: 100%"></div>
+    {% endfor %}
+  </ul>
+</div>

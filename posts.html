@@ -5,8 +5,28 @@ title: All Posts
 description: "An archive of posts sorted by date."
 ---
 
-<ul class="post-list">
-{% for post in site.posts %} 
-  <li><article><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }} <span class="date-show"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span></a></article></li>
-{% endfor %}
-</ul>
+<div
+  style="
+    align-items: center;
+    justify-content: center;
+    margin-left: 20%;
+    width: 90%;
+  "
+>
+  <ul class="post-list ml-4">
+    {% for post in site.posts %}
+    <li class="m-2 p-2 border border-dark border-2 rounded">
+      <article>
+        <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}"
+          >{{ post.title }}
+          <span class="date-show"
+            ><time datetime="{{ post.date | date_to_xmlschema }}"
+              >{{ post.date | date: "%B %d, %Y" }}</time
+            ></span
+          ></a
+        >
+      </article>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

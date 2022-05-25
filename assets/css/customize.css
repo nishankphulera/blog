@@ -277,20 +277,22 @@ span + .entry-title {
 }
 
 */
-.single-post{
+/* .single-post{
 	border: solid;
 	border-width: 2px;
 	box-shadow: 5px 5px 8px grey;
 	margin-bottom: 20px;
 	border-radius: 10px;
-	border-color: grey;
-	
-	margin-left: 300px;
-	background-color: hsl(0, 0%, 100%);
+	background-color: hsl(0, 54%, 51%);
 	color: white;
 	
 	
 	
+} */
+.post-scroll{
+	height: 100px;
+		width: 500px;
+		overflow-x: scroll;
 }
 /* @keyframes blog{
 	0% {
@@ -323,6 +325,9 @@ span + .entry-title {
 	margin-top: -71px;
 }
 
+.wrapper::-webkit-scrollbar{
+	width: 0;
+}
 
 .list-group-item{
 	padding: 8px;

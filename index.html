@@ -1,25 +1,30 @@
 ---
 layout: page
-title: Recent Posts
+title: FEATURED POSTS
 description: "List of recent blog posts."
 tags: [eLitmus, recent]
 ---
-
-  {% for post in site.posts limit:10 %}
-
-  <li class="single-post w-50">
-    <div class="container-fluid h-25 p-2 w-100 border-2">
-      <img src="images/akash.jpg" ></img>
+{% include sidebar.html %}
+<div class="wrapper" style="border-radius: 30px;margin-left: 220px;;max-height:650px; display: flex; overflow: hidden; background-color: #2D2727;padding: 20px; width: 1024px; align-items: center;justify-content: center;"  > 
+  
+  {% for post in site.posts  limit:8%}
+  <div class="mySlides " style="align-items: center; justify-content:center;flex-direction: row;">
+    <button style="border-radius: 10px; top: 300px;position: fixed;left: 240px;"   onclick="plusDivs(-1)">&#10094;</button>
+  <div class=" m-1 p-1" style="margin-right: 50px ;margin: 10px; max-height: 560px; border:solid;border-radius: 30px; border-width: 4px; width: 900px;background-color: rgb(255, 255, 255);  ">
+    <div style="margin-top: 10px; margin-left:10px; margin-bottom:10px;align-items: center;justify-content: center;">
+      <img style="width:100px;height:100px" src="images/apple-touch-icon.png" ></img>
     </div>
-    <span class="entry-date-published">
-      <time datetime="{{ post.date | date_to_xmlschema }}">
+    <div style="margin-left: 10px; top: 10px;">
+      <time  datetime="{{ post.date | date_to_xmlschema }}">
         <i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
       </time>
-    </span>
-    <article>
-      <header class="entry-header">
+      </div>
+    
+    
+      
         <h3 class="entry-title-summary">
           <a
+          style="color: #2D2727"
             id="title-heading"
             class="title-heading"
             href="{{ site.url }}{{ site.baseurl }}{{ post.url }}"
@@ -27,26 +32,60 @@ tags: [eLitmus, recent]
             >{{ post.title }}
           </a>
         </h3>
-        <div class="about-post">
-          {% if post.excerpt %} {% capture full_url %} {{ site.url }}{{
+        <div id="about-post" class="about-post" style="width: auto;height: 110px;overflow: hidden;">
+          <!-- {% if post.excerpt %} {% capture full_url %} {{ site.url }}{{
           site.baseurl }}{{ post.url }} {% endcapture %} {{ post.excerpt |
           remove: '
           <p>' | remove: '</p>
-          ' }}
-
+          ' }} -->
+          <p style="color:#2D2727;">{{post.excerpt}}<p>
+         </div>
+         <div class="row small ml-2">
+              {% for tag in post.tags %}
+              <p style="color: white;background-color: #13A6B9;" class=" px-1 rounded tag-display mr-1">
+                {{ tag }}
+              </p>
+              {% endfor %}
+            </div>
           <a
             href="{{ full_url }}"
             rel="nofollow"
             class="read-more-pull-right"
-            style="color: white"
+            style="margin: 8px; color: rgb(0, 0, 0)"
           >
             Read More &raquo;</a
           >
           {% endif %}
-        </div>
-      </header>
-    </article>
-  </li>
+        
+      
+    
+  </div>
+  
+<button style="border-radius: 10px;top: 300px;position: fixed;right:60px;"  onclick="plusDivs(+1)">&#10095;</button>
+  </div>
 
   {% endfor %}
+  
 </div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+</script>
+  
+
